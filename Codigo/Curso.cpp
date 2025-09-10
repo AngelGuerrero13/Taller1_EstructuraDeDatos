@@ -9,6 +9,7 @@ Curso::Curso(string codigo, string nombreCurso, int cantMaxEstudiantes, string n
     this->cantMaxEstudiantes = cantMaxEstudiantes;
     this->nombreCarrera = nombreCarrera;
     this->profesor = profesor;
+    this->Alumnos = ListaAlumnos();
 }
 
 //Getters
@@ -26,6 +27,9 @@ string Curso::getNombreCarrera(){
 }
 string Curso::getProfesor(){
     return profesor;
+}
+ListaAlumnos Curso::getLista(){
+    return Alumnos;
 }
 
 //Setters

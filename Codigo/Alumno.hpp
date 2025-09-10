@@ -1,5 +1,6 @@
-#include <iostream>
 #include <string>
+#include "ListaCurso.hpp";
+
 using namespace std;
 
 class Alumno{
@@ -10,9 +11,8 @@ class Alumno{
         string apellido;
         string carrera;
         string fechaIngreso;
-        string cursos;//ponerlo con lista
-        double notas;//ponerlo con lista
-        
+        ListaCurso cursos;
+ 
     public:
         //contructor
         Alumno(int id,string nombre,string apellido,string carrera,string fechaIngreso);
@@ -23,14 +23,15 @@ class Alumno{
         string getCarrera();
         int getId();
         string getfechaIngreso();
+        ListaCurso getCursos();
         
-
         //Setters
         void setID(int newId);
         void setNombre(string newNombre);
         void setApellido(string newApellido);
         void setCarrera(string newCarrera);
         void setIngreso(string newIngreso);
+        
 
         //destructor
         ~Alumno();

@@ -1,6 +1,7 @@
 #include "Sistema.hpp"
-#include "Alumno.cpp"
-#include "Curso.cpp"
+#include "Alumno.hpp"
+#include "Curso.hpp"
+#include "Nota.hpp"
 #include <iostream>
 
 using namespace std;
@@ -72,7 +73,7 @@ void Sistema::gestionAlumnos(){
         }
     }while(opAlumno!=4);
 }
-void Sistema::agregarAlumno(){
+void Sistema::agregarAlumno(ListaAlumno alumnos){
 
     int idAlumno;
     string nombreAlumno;
@@ -93,8 +94,8 @@ void Sistema::agregarAlumno(){
 
     //editar constructor, faltan atributos
     Alumno alumno(idAlumno, nombreAlumno, apellidoAlumno, carreraAlumno, fechaIngreso);    
+    alumnos->agregarAlumno(alumno);
 
-    cout<<"Alumno Agregado"<<endl;
 }
 void Sistema::buscarAlumno(){
     //agregar logica mas tarde debido al uso de listas con nexo.
@@ -130,7 +131,7 @@ void Sistema::gestionCursos(){
         }
     }while(opCurso!=4);
 }
-void Sistema::agregarCurso(){
+void Sistema::agregarCurso(ListaCurso cursos){
     string codigoCurso;
     string nombreCurso;
     int cantMaxEstudiantesCurso;
@@ -150,8 +151,7 @@ void Sistema::agregarCurso(){
 
     
     Curso curso(codigoCurso, nombreCurso,cantMaxEstudiantesCurso, carreraCurso, profesorCurso);
-
-    cout<<"Curso Agregado"<<endl;
+    cursos->agregarCurso(curso);
 }
 void Sistema::buscarCurso(){
     //agregar logica mas tarde debido al uso de listas con nexo.
