@@ -10,8 +10,6 @@ Alumno::Alumno(int id,string nombre,string apellido,string carrera,string fechaI
     this->apellido = apellido;
     this->carrera = carrera;
     this->fechaIngreso = fechaIngreso;
-    this->cursos = ListaCurso();
-    //falta agregar las notas
 }
 //Getters
 int Alumno::getId(){return id;}
@@ -19,7 +17,6 @@ string Alumno::getNombre(){return nombre;}
 string Alumno::getApellido(){return apellido;}
 string Alumno::getCarrera(){return carrera;}
 string Alumno::getfechaIngreso(){return fechaIngreso;}
-ListaCurso Alumno::getCursos(){return cursos;}
 
 //Setters
 void Alumno::setID(int newId){

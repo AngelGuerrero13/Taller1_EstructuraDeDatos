@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "ListaAlumno.hpp";
+#pragma once
 
 using namespace std;
 
@@ -11,7 +11,6 @@ class Curso{
         int cantMaxEstudiantes;
         string nombreCarrera;
         string profesor;
-        ListaAlumno Alumnos;
     public:
         //constructor
         Curso(string codigo, string nombreCurso, int cantMaxEstudiantes, string nombreCarrera, string profesor);
@@ -21,7 +20,7 @@ class Curso{
         int getCantMaxEstudiantes();
         string getNombreCarrera();
         string getProfesor();
-        ListaAlumno getLista();
+        
         //Setters
         void setCodigo(string codigo);
         void setNombreCurso(string nombreCurso);

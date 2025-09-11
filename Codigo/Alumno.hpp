@@ -1,5 +1,5 @@
 #include <string>
-#include "ListaCurso.hpp";
+#pragma once
 
 using namespace std;
 
@@ -11,7 +11,6 @@ class Alumno{
         string apellido;
         string carrera;
         string fechaIngreso;
-        ListaCurso cursos;
  
     public:
         //contructor

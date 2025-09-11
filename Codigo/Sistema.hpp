@@ -1,6 +1,11 @@
 #pragma once
+#include "ListaAlumno.hpp"
+#include "ListaCurso.hpp"
 
 class Sistema{
+    private:
+        ListaAlumno alumnos;
+        ListaCurso cursos;
     public:
         Sistema();
         void menu();

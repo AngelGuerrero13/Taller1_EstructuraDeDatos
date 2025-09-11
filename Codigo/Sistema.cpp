@@ -3,6 +3,7 @@
 #include "Curso.hpp"
 #include "Nota.hpp"
 #include <iostream>
+#pragma once
 
 using namespace std;
 
@@ -12,6 +13,9 @@ Sistema::Sistema(){
 void Sistema::menu(){
 
     int op;
+
+    ListaAlumno alumnos = ListaAlumno();
+    ListaCurso cursos = ListaCurso();
     
     do{
         cout<<"Menu Principal"<<endl;
@@ -73,7 +77,7 @@ void Sistema::gestionAlumnos(){
         }
     }while(opAlumno!=4);
 }
-void Sistema::agregarAlumno(ListaAlumno alumnos){
+void Sistema::agregarAlumno(){
 
     int idAlumno;
     string nombreAlumno;
@@ -92,18 +96,54 @@ void Sistema::agregarAlumno(ListaAlumno alumnos){
     cout<<"Ingrese la Fecha de Ingreso del Alumno: ";
     cin>>fechaIngreso;
 
-    //editar constructor, faltan atributos
     Alumno alumno(idAlumno, nombreAlumno, apellidoAlumno, carreraAlumno, fechaIngreso);    
-    alumnos->agregarAlumno(alumno);
+    alumnos.agregarAlumno(alumno);
 
+    cout<<"Alumno agregado con exito"<<endl;
 }
 void Sistema::buscarAlumno(){
     //agregar logica mas tarde debido al uso de listas con nexo.
-    cout<<"Ingrese el ID del Alumno: "<<endl;
+    int opBuscar;
+    int idAlumno;
+    string nombreAlumno;
+
+    do{
+        cout<<"1. Buscar por ID"<<endl;
+        cout<<"2. Buscar por Nombre"<<endl;
+        cout<<"3. Volver al Menu Alumnos"<<endl;
+        cin>>opBuscar;
+
+        switch(opBuscar){
+            case 1:
+                cout<<"Ingrese el ID del Alumno: "<<endl;
+                cin>>idAlumno;
+                alumnos.buscarAlumnoId(idAlumno);
+                break;
+            case 2:
+                cout<<"Ingrese el Nombre del Alumno: "<<endl;
+                cin>>nombreAlumno;
+                alumnos.buscarAlumnoNombre(nombreAlumno);
+                break;
+            case 3:
+                break;
+        }
+    }while(opBuscar!=3);
+
 }
 void Sistema::eliminarAlumno(){
-    //agregar logica mas tarde debido al uso de listas con nexo.
+
+    int idAlumno;
+
     cout<<"Ingrese el ID del Alumno: "<<endl;
+    cin>>idAlumno;
+
+    bool eliminado = alumnos.eliminarAlumno(idAlumno);
+
+    if(eliminado){
+        cout<<"Alumno eliminado con exito"<<endl;
+    }else{
+        cout<<"No se encontro el Alumno"<<endl;
+    }
 }
 
 void Sistema::gestionCursos(){
@@ -131,7 +171,7 @@ void Sistema::gestionCursos(){
         }
     }while(opCurso!=4);
 }
-void Sistema::agregarCurso(ListaCurso cursos){
+void Sistema::agregarCurso(){
     string codigoCurso;
     string nombreCurso;
     int cantMaxEstudiantesCurso;
@@ -151,13 +191,52 @@ void Sistema::agregarCurso(ListaCurso cursos){
 
     
     Curso curso(codigoCurso, nombreCurso,cantMaxEstudiantesCurso, carreraCurso, profesorCurso);
-    cursos->agregarCurso(curso);
+    cursos.agregarCurso(curso);
+
+    cout<<"Curso agregado con exito"<<endl;
 }
 void Sistema::buscarCurso(){
     //agregar logica mas tarde debido al uso de listas con nexo.
+    int opBuscar;
+    string codigoCurso;
+    string nombreCurso;
+
+    do{
+        cout<<"1. Buscar por ID"<<endl;
+        cout<<"2. Buscar por Nombre"<<endl;
+        cout<<"3. Volver al Menu Cursos"<<endl;
+        cin>>opBuscar;
+
+        switch(opBuscar){
+            case 1:
+                cout<<"Ingrese el codigo del Curso: "<<endl;
+                cin>>codigoCurso;
+                cursos.buscarCursoCodigo(codigoCurso);
+                break;
+            case 2:
+                cout<<"Ingrese el Nombre del Curso: "<<endl;
+                cin>>nombreCurso;
+                cursos.buscarCursoNombre(nombreCurso);
+                break;
+            case 3:
+                break;
+        }
+    }while(opBuscar!=3);
 }
 void Sistema::eliminarCurso(){
     //agregar logica mas tarde debido al uso de listas con nexo.
+    int codigoCurso;
+
+    cout<<"Ingrese el codigo del Curso: "<<endl;
+    cin>>codigoCurso;
+
+    bool eliminado = cursos.eliminarCurso(codigoCurso);
+
+    if(eliminado){
+        cout<<"Curso eliminado con exito"<<endl;
+    }else{
+        cout<<"No se encontro el Curso"<<endl;
+    }
 }
 
 void Sistema::inscripcionCurso(){
@@ -179,7 +258,7 @@ void Sistema::inscripcionCurso(){
                 */
                 break;
             case 2:
-                desinscribirAlumnoInscrito();
+                desinscribirAlumno();
                 break;
             case 3:
                 break;
@@ -187,9 +266,9 @@ void Sistema::inscripcionCurso(){
     }while(opInscripcion!=3);
 }
 
-void inscribirAlumno(){
+void Sistema::inscribirAlumno(){
 }
-void desinscribirAlumnoInscrito(){
+void Sistema::desinscribirAlumno(){
 }
 
 void Sistema::gestionNotas(){

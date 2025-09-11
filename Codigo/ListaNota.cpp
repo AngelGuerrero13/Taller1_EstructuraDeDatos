@@ -1,5 +1,8 @@
+#include <iostream>
 #include "ListaNota.hpp"
 #pragma once
+
+using namespace std;
 
 class ListaNota
 {
@@ -9,9 +12,9 @@ public:
     ListaNota(){
         start = nullptr;
     }
-    void ListaNota::agregarNota(Nota nota){
+    void ListaNota::agregarNota(Nota* nota){
         if(start == nullptr){
-            NodoNota* nuevo = NodoNota();
+            NodoNota* nuevo = new NodoNota();
             nuevo->setNota(nota);
             nuevo->setSiguiente(nullptr);
             start = nuevo;
@@ -20,7 +23,7 @@ public:
             while(temp->getSiguiente() != nullptr){
                 temp = temp->getSiguiente();
             }
-            NodoNota* nuevo = NodoNota();
+            NodoNota* nuevo = new NodoNota();
             nuevo->setNota(nota);
             nuevo->setSiguiente(nullptr);
             temp->setSiguiente(nuevo);
@@ -30,10 +33,10 @@ public:
 
 
     void ListaNota::mostrarNotas(){
-        NodoNota* temo = start;
+        NodoNota* temp = start;
         while (temp != nullptr){
             cout<< temp->getNota()<<endl;
-            temp = temp->getsiguiente();
+            temp = temp->getSiguiente();
         }
 
     }

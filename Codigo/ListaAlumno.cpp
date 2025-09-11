@@ -1,5 +1,8 @@
 #include "ListaAlumno.hpp"
+#include <iostream>
 #pragma once
+
+using namespace std;
 
 class ListaAlumno
 {
@@ -13,7 +16,7 @@ class ListaAlumno
         void ListaAlumno::agregarAlumno(Alumno* alumno){
 
             if(start == nullptr){
-                NodoAlumno* nuevo = NodoAlumno();
+                NodoAlumno* nuevo = new NodoAlumno();
                 nuevo->setAlumno(alumno);
                 nuevo->setSiguiente(nullptr);
                 start = nuevo;
@@ -25,13 +28,69 @@ class ListaAlumno
                     cursor = cursor->getSiguiente();
                 }
 
-                NodoAlumno* nuevo = NodoAlumno();
+                NodoAlumno* nuevo = new NodoAlumno();
                 nuevo->setAlumno(alumno);
                 nuevo->setSiguiente(nullptr);
                 cursor->setSiguiente(nuevo);
             }
 
             cout<<"Alumno Agregado con exito"<<endl;
+        }
+
+        bool ListaAlumno::eliminarAlumnoId(NodoAlumno* start,int ID){
+
+            NodoAlumno* cursor = start;
+            NodoAlumno* anterior = nullptr;
+
+            while(cursor != nullptr && cursor->getAlumno()->getId() != ID){
+                anterior = cursor;
+                cursor = cursor->getSiguiente();
+            }
+
+            if(cursor == nullptr){
+                return false;
+            }
+
+            if(anterior == nullptr){
+                start = cursor->getSiguiente();//el primero
+            }else{
+                anterior->setSiguiente(cursor->getSiguiente());
+            }
+
+            delete cursor;
+            return true;
+        }
+
+        void ListaAlumno::buscarAlumnoNombre(NodoAlumno* start,string nombre){
+
+            NodoAlumno* cursor = start;
+            bool encontrado = false;
+
+            while(cursor != nullptr){
+                if(cursor->getAlumno()->getNombre() == nombre){
+                    cout << "Alumno encontrado: " << cursor->getAlumno()->getNombre() << endl;
+                    encontrado = true;
+                }
+                cursor = cursor->getSiguiente();
+            }
+            if(!encontrado){
+                cout << "Alumno no encontrado" << endl;
+            }
+        }
+    
+        void ListaAlumno::buscarAlumnId(int ID){
+            NodoAlumno* cursor = start;
+            bool encontrado = false;
+            while(cursor != nullptr){
+                if(cursor->getAlumno()->getId() == ID){
+                    cout << "Alumno encontrado: " << cursor->getAlumno()->getNombre() << endl;
+                    encontrado = true;
+                }
+                cursor = cursor->getSiguiente();
+            }
+            if(!encontrado){
+                cout << "Alumno no encontrado" << endl;
+            }
         }
 
         void ListaAlumno::mostrarAlumnos(){
