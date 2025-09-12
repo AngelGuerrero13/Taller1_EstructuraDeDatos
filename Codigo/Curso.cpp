@@ -27,6 +27,9 @@ string Curso::getNombreCarrera(){
 string Curso::getProfesor(){
     return this->profesor;
 }
+int Curso::getEstudiantesInscritos(){
+    return this->estudiantesInscritos;
+}
 
 //Setters
 void Curso::setCodigo(string codigo){
@@ -43,6 +46,9 @@ void Curso::setNombreCarrera(string nombreCarrera){
 }
 void Curso::setProfesor(string profesor){
     this->profesor = profesor;
+}
+void Curso::setEstudiantesInscritos(){
+    this->estudiantesInscritos++;
 }
 
 //Destructor

@@ -4,6 +4,8 @@
 #include "Alumno.hpp"
 #include "Curso.hpp"
 #include "Nota.hpp"
+#include "ListaNota.hpp"
+#include "Inscripcion.hpp"
 
 class Sistema{
     private:

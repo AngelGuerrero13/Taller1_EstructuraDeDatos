@@ -1,6 +1,6 @@
 #include <string>
 #pragma once
-
+#include "Inscripcion.hpp"
 using namespace std;
 
 class Alumno{
@@ -11,6 +11,7 @@ class Alumno{
         string apellido;
         string carrera;
         string fechaIngreso;
+        Inscripcion* inscripciones;//para guardar cursos inscritos
  
     public:
         //contructor
@@ -31,6 +32,9 @@ class Alumno{
         void setCarrera(string newCarrera);
         void setIngreso(string newIngreso);
         
+        void agregarInscripcion(Curso* curso);
+        void eliminarInscripcion(string codigoCurso);
+        void mostrarCursos();
 
         //destructor
         ~Alumno();

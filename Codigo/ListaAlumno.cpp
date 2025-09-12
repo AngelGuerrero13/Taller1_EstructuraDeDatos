@@ -1,9 +1,7 @@
 #include "ListaAlumno.hpp"
 #include <iostream>
 
-
 using namespace std;
-
 
 ListaAlumno::ListaAlumno(){
     start = nullptr;
@@ -89,16 +87,20 @@ Alumno* ListaAlumno::buscarAlumnoId(int ID){
         }
         cursor = cursor->getSiguiente();
     }
-    if(!encontrado){
-        cout << "Alumno no encontrado" << endl;
-        return nullptr;
-    }
+    
+    return nullptr;
+    
 }
 
 void ListaAlumno::mostrarAlumnos(){
     NodoAlumno* cursor = start;
     while(cursor != nullptr){
-        cout << cursor->getAlumno()->getNombre() << endl;
+        cout<<"[ID: "<<cursor->getAlumno()->getId()
+            <<"Nombre Alumno: "<<cursor->getAlumno()->getNombre()
+            <<cursor->getAlumno()->getApellido()<<", "<<
+            "Carrera: "<<cursor->getAlumno()->getCarrera()<<", "
+            <<"Fecha de ingreso: "<<cursor->getAlumno()->getfechaIngreso()
+            <<"]"<<endl;
         cursor = cursor->getSiguiente();
     }
 }
@@ -119,4 +121,3 @@ ListaAlumno::~ListaAlumno(){
         delete aux;
     }
 }
-

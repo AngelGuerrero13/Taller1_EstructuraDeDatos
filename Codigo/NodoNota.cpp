@@ -18,8 +18,7 @@ void NodoNota::setSiguiente(NodoNota* siguiente){
     this->siguiente = siguiente;
 }
 NodoNota::~NodoNota(){
-    nota = nullptr;
     delete nota;
+    nota = nullptr;
     siguiente = nullptr;
-    delete siguiente;
 }

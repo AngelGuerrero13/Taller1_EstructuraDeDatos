@@ -8,7 +8,8 @@ class ListaNota{
         //constructor
         ListaNota();
         //funciones
-        void agregarNota(Nota nota);
+        void agregarNota(Nota* nota);
+        double calcularPromedio();
         void mostrarNotas();
         bool isEmpty();
         ~ListaNota();

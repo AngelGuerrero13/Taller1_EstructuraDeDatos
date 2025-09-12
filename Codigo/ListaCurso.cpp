@@ -1,7 +1,5 @@
 #include "ListaCurso.hpp"
 
-
-
 using namespace std;
 
 ListaCurso::ListaCurso(){
@@ -46,48 +44,49 @@ bool ListaCurso::eliminarCurso(string ID){
     return true;
 }
 
-void ListaCurso::buscarCursoNombre(string nombre){
+Curso* ListaCurso::buscarCursoNombre(string nombre){
 
     NodoCurso* cursor = start;
-    bool encontrado = false;
 
     while(cursor != nullptr){
         if(cursor->getCurso()->getNombreCurso() == nombre){
             cout << "Curso encontrado: " << cursor->getCurso()->getNombreCurso() << endl;
-            encontrado = true;
+
+            return cursor->getCurso();
         }
         cursor = cursor->getSiguiente();
     }
-    if(!encontrado){
-        cout << "Curso no encontrado" << endl;
-    }
+
+    cout << "Curso no encontrado" << endl;
+    return nullptr;
 }
 
-void ListaCurso::buscarCursoCodigo(string codigo){
+Curso* ListaCurso::buscarCursoCodigo(string codigo){
 
     NodoCurso* cursor = start;
-    bool encontrado = false;
 
     while(cursor != nullptr){
         if(cursor->getCurso()->getCodigo() == codigo){
-            cout << "Curso encontrado: " << cursor->getCurso()->getCodigo() << endl;
-            encontrado = true;
+            return cursor->getCurso();
         }
         cursor = cursor->getSiguiente();
     }
-    if(!encontrado){
-        cout << "Curso no encontrado" << endl;
-    }
+    return nullptr;
 }
 
 void ListaCurso::mostrarLista(){
     NodoCurso* temp = start;
     while(temp!= nullptr){
-        cout<< temp-> getCurso() << "->";
+        cout<<"[Codigo: "<<temp->getCurso()->getCodigo() <<", "
+            <<"Nombre Curso: "<<temp->getCurso()->getNombreCurso()<<", "
+            <<"Profesor: "<<temp->getCurso()->getProfesor()<<", "
+            <<"Carrera: "<<temp->getCurso()->getNombreCarrera()<<", "
+            <<"Cantidad maxima de alumnos: "<<temp->getCurso()->getCantMaxEstudiantes()
+            <<"]"<<endl;
         temp  = temp->getSiguiente();
 
     }
-    cout<<"nullptr";
+    cout<<"nullptr"<<endl;
 }
 
 bool ListaCurso::isEmpty(){
@@ -106,13 +105,3 @@ ListaCurso::~ListaCurso(){
         delete borrar; 
     }
 }
-
-
-
-
-
-
-
-
-
-

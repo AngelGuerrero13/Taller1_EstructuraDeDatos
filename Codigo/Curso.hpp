@@ -11,6 +11,7 @@ class Curso{
         int cantMaxEstudiantes;
         string nombreCarrera;
         string profesor;
+        int estudiantesInscritos;
     public:
         //constructor
         Curso(string codigo, string nombreCurso, int cantMaxEstudiantes, string nombreCarrera, string profesor);
@@ -20,8 +21,10 @@ class Curso{
         int getCantMaxEstudiantes();
         string getNombreCarrera();
         string getProfesor();
+        int getEstudiantesInscritos();
         
         //Setters
+        void setEstudiantesInscritos();
         void setCodigo(string codigo);
         void setNombreCurso(string nombreCurso);
         void setCantMaxEstudiantes(int cantMaxEstudiantes);
