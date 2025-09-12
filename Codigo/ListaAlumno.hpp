@@ -13,7 +13,7 @@ class ListaAlumno{
         void agregarAlumno(Alumno* alumno);//Añadir alumno a la lista
         bool eliminarAlumno(NodoAlumno* start,int id);//Eliminar alumno de la lista
         void buscarAlumnoNombre(NodoAlumno* start,string nombre);
-        void buscarAlumnoId(int id);
+        Alumno* buscarAlumnoId(int id);
         void mostrarAlumnos();//Se obtiene la lista para mostrar
         bool isEmpty();//Se verifica si la lista esta vacia
     

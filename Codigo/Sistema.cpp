@@ -22,7 +22,9 @@ void Sistema::menu(){
         cout<<"4. Gestion de Notas"<<endl;
         cout<<"5. Reportes"<<endl;
         cout<<"6. Salir"<<endl;
+        cout<<"------------------"<<endl;
         cin>>op;
+        cout<<"------------------"<<endl;
 
         switch(op){
             case 1:
@@ -58,6 +60,9 @@ void Sistema::gestionAlumnos(){
         cout<<"2. Buscar Alumno"<<endl;
         cout<<"3. Eliminar Alumno"<<endl;
         cout<<"4. Volver al Menu Principal"<<endl;
+        cout<<"------------------"<<endl;
+        cin>>opAlumno;
+        cout<<"------------------"<<endl;
 
         switch(opAlumno){
             case 1:
@@ -92,9 +97,9 @@ void Sistema::agregarAlumno(){
     cin>>carreraAlumno;
     cout<<"Ingrese la Fecha de Ingreso del Alumno: ";
     cin>>fechaIngreso;
-
-    Alumno alumno(idAlumno, nombreAlumno, apellidoAlumno, carreraAlumno, fechaIngreso);    
-    alumnos.agregarAlumno(&alumno);
+    cout<<idAlumno<<endl;
+    Alumno* alumno = new Alumno(idAlumno, nombreAlumno, apellidoAlumno, carreraAlumno, fechaIngreso);
+    alumnos.agregarAlumno(alumno);
 
     cout<<"Alumno agregado con exito"<<endl;
 }
@@ -264,9 +269,34 @@ void Sistema::inscripcionCurso(){
 }
 
 void Sistema::inscribirAlumno(){
+    int id;
+    string nombrenuevo;
+    string curso;
+    Alumno* existe = nullptr;
+    
+    
+    do{
+        cout<<"Ingrese el ID del alumno"<<endl;
+        cin>>id;
+        existe = alumnos.buscarAlumnoId(id);
+        
+    }while(existe!=nullptr);
+
+
+    cout<<"Ingrese el curso en el que se desea agregar: "<<endl;
+    cin>>curso;
+    
+    cursos.buscarCursoNombre(curso);
+
 }
+
+
+
 void Sistema::desinscribirAlumno(){
 }
+
+
+
 
 void Sistema::gestionNotas(){
     /*

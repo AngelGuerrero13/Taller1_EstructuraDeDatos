@@ -13,6 +13,7 @@ class ListaCurso{
         bool eliminarCurso(string id);
         void buscarCursoNombre(string nombre);
         void buscarCursoCodigo(string codigo);
+        
         void mostrarLista();//Se obtiene la lista para mostrar
         bool isEmpty();//Se verifica si la lista esta vacia
         ~ListaCurso(); //Destructor  
