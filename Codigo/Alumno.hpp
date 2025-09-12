@@ -22,7 +22,7 @@ class Alumno{
         string getCarrera();
         int getId();
         string getfechaIngreso();
-        ListaCurso getCursos();
+        
         
         //Setters
         void setID(int newId);

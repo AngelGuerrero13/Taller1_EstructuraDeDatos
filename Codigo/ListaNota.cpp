@@ -1,6 +1,6 @@
 #include <iostream>
 #include "ListaNota.hpp"
-#pragma once
+
 
 using namespace std;
 

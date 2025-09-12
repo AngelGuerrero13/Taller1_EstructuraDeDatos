@@ -1,9 +1,6 @@
 #include "Sistema.hpp"
-#include "Alumno.hpp"
-#include "Curso.hpp"
-#include "Nota.hpp"
 #include <iostream>
-#pragma once
+
 
 using namespace std;
 
@@ -97,7 +94,7 @@ void Sistema::agregarAlumno(){
     cin>>fechaIngreso;
 
     Alumno alumno(idAlumno, nombreAlumno, apellidoAlumno, carreraAlumno, fechaIngreso);    
-    alumnos.agregarAlumno(alumno);
+    alumnos.agregarAlumno(&alumno);
 
     cout<<"Alumno agregado con exito"<<endl;
 }
@@ -122,7 +119,7 @@ void Sistema::buscarAlumno(){
             case 2:
                 cout<<"Ingrese el Nombre del Alumno: "<<endl;
                 cin>>nombreAlumno;
-                alumnos.buscarAlumnoNombre(nombreAlumno);
+                alumnos.buscarAlumnoNombre(alumnos.getStart(),nombreAlumno);
                 break;
             case 3:
                 break;
@@ -137,7 +134,7 @@ void Sistema::eliminarAlumno(){
     cout<<"Ingrese el ID del Alumno: "<<endl;
     cin>>idAlumno;
 
-    bool eliminado = alumnos.eliminarAlumno(idAlumno);
+    bool eliminado = alumnos.eliminarAlumno(alumnos.getStart(),idAlumno);
 
     if(eliminado){
         cout<<"Alumno eliminado con exito"<<endl;
@@ -191,7 +188,7 @@ void Sistema::agregarCurso(){
 
     
     Curso curso(codigoCurso, nombreCurso,cantMaxEstudiantesCurso, carreraCurso, profesorCurso);
-    cursos.agregarCurso(curso);
+    cursos.agregarCurso(&curso);
 
     cout<<"Curso agregado con exito"<<endl;
 }
@@ -225,7 +222,7 @@ void Sistema::buscarCurso(){
 }
 void Sistema::eliminarCurso(){
     //agregar logica mas tarde debido al uso de listas con nexo.
-    int codigoCurso;
+    string codigoCurso;
 
     cout<<"Ingrese el codigo del Curso: "<<endl;
     cin>>codigoCurso;
