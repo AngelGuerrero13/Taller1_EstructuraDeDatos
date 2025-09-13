@@ -20,7 +20,6 @@ void NodoCurso::setCurso(Curso* curso){
 }
 
 NodoCurso::~NodoCurso(){
-    delete curso;
     curso = nullptr;
     siguiente = nullptr;
 }

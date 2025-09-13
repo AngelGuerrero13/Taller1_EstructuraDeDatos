@@ -18,6 +18,7 @@ string Alumno::getNombre(){return nombre;}
 string Alumno::getApellido(){return apellido;}
 string Alumno::getCarrera(){return carrera;}
 string Alumno::getfechaIngreso(){return fechaIngreso;}
+Inscripcion* Alumno::getInscripciones(){return inscripciones;}
 
 void Alumno::agregarInscripcion(Curso* curso){
     Inscripcion* nuevaInscripcion = new Inscripcion(curso);
@@ -49,13 +50,44 @@ void Alumno::eliminarInscripcion(string codigoCurso){
 void Alumno::mostrarCursos(){
 
     Inscripcion* cursor = inscripciones;
+    ListaNota* notas;
     
     while(cursor != nullptr){
         cout<<"Cursos: "<<cursor->getCurso()->getNombreCurso()
         <<"("<<cursor->getCurso()->getCodigo()<<")"<<endl;
 
+        notas = cursor->getNotas();
+        cout<<"Notas: ";
+        notas->mostrarNotas();
+        cout<<"Promedio: "<<notas->calcularPromedio()<<endl;
+        cout<<"------------------"<<endl;
         cursor = cursor->getSiguiente();
     }
+
+}
+void Alumno::mostrarReporte(){
+    cout<<"Reporte del Alumno: "<<nombre<<" "<<apellido<<endl;
+    cout<<"ID: "<<id<<endl;
+    cout<<"Carrera: "<<carrera<<endl;
+    cout<<"Fecha de Ingreso: "<<fechaIngreso<<endl;
+    cout<<"Cursos Inscritos: "<<endl;
+    mostrarCursos();
+    
+    cout<<"------------------"<<endl;
+}
+
+bool Alumno::estaInscrito(Inscripcion* inscripcion){
+    
+    Inscripcion* actual = inscripciones;
+
+    while(actual != nullptr){
+        if(inscripcion->getCurso()->getNombreCurso() == actual->getCurso()->getNombreCurso()){
+            return true;
+        }
+        actual = actual ->getSiguiente();
+    }
+
+    return false;
 }
 
 //Setters

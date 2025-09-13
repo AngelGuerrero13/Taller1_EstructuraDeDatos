@@ -58,14 +58,14 @@ bool ListaAlumno::eliminarAlumno(NodoAlumno* start,int ID){
     return true;
 }
 
-void ListaAlumno::buscarAlumnoNombre(NodoAlumno* start,string nombre){
+void ListaAlumno::buscarAlumnoNombre(string nombre){
 
     NodoAlumno* cursor = start;
     bool encontrado = false;
 
     while(cursor != nullptr){
         if(cursor->getAlumno()->getNombre() == nombre){
-            cout << "Alumno encontrado: " << cursor->getAlumno()->getNombre() << endl;
+            cout << "Alumno encontrado: " << cursor->getAlumno()->getNombre()<<" "<< cursor->getAlumno()->getApellido()<< endl;
             encontrado = true;
         }
         cursor = cursor->getSiguiente();
@@ -77,12 +77,11 @@ void ListaAlumno::buscarAlumnoNombre(NodoAlumno* start,string nombre){
 
 Alumno* ListaAlumno::buscarAlumnoId(int ID){
     NodoAlumno* cursor = start;
-    bool encontrado = false;
     while(cursor != nullptr){
         
         if(cursor->getAlumno()->getId() == ID){
-            cout << "Alumno encontrado: " << cursor->getAlumno()->getNombre() << cursor->getAlumno()->getApellido()<< endl;
-            encontrado = true;
+            cout << "Alumno encontrado: " << cursor->getAlumno()->getNombre() <<" "<< cursor->getAlumno()->getApellido()<< endl;
+
             return cursor->getAlumno();
         }
         cursor = cursor->getSiguiente();

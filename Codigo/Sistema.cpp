@@ -117,7 +117,7 @@ void Sistema::buscarAlumno(){
             case 2:
                 cout<<"Ingrese el Nombre del Alumno: "<<endl;
                 cin>>nombreAlumno;
-                alumnos.buscarAlumnoNombre(alumnos.getStart(),nombreAlumno);
+                alumnos.buscarAlumnoNombre(nombreAlumno);
                 break;
             case 3:
                 break;
@@ -278,7 +278,7 @@ void Sistema::inscribirAlumno(){
         if(alumnoExiste == nullptr){
             cout<<"Alumno no encontrado. Intente nuevamente"<<endl;
         }
-
+        cout<<"Ihola"<<endl;
     }while(alumnoExiste==nullptr);
 
 
@@ -298,13 +298,14 @@ void Sistema::inscribirAlumno(){
         return;
     }
 
-    if(cursoExiste->getCantMaxEstudiantesCurso() <= cursoExiste->getCantEstudiantesInscritos()){
+    if(cursoExiste->getCantMaxEstudiantes() <= cursoExiste->getEstudiantesInscritos()){
         cout<<"Error. No hay cupos disponibles en el curso: "<<cursoExiste->getNombreCurso()<<endl;
         return;
     }
     
 
     alumnoExiste->agregarInscripcion(cursoExiste);
+    cursoExiste->setEstudiantesInscritos();
 
     cout<<"Alumno "<<alumnoExiste->getNombre()<<" "<<alumnoExiste->getApellido()
         <<" inscrito en el curso "<<cursoExiste->getNombreCurso()<<endl;
@@ -351,13 +352,70 @@ void Sistema::desinscribirAlumno(){
         <<" eliminado del curso "<<cursoExiste->getNombreCurso()<<endl;
 }
 
-void Sistema::gestionNotas(){
-    /*
-    *Se pregunta por el alumno, luego se despliegan los cursos inscritos de dicho
-    *alumno, luego se pregunta por el curso, y se despliegan las notas de dicho curso
-    *para dicho alumno.
-    */
+void Sistema::gestionNotas() {
+    int id;
+    Alumno* alumno = nullptr;
+
+    do {
+        cout << "Ingrese el ID del alumno: ";
+        cin >> id;
+        alumno = alumnos.buscarAlumnoId(id);
+        if (!alumno) {
+            cout << "Alumno no encontrado. Intente nuevamente." << endl;
+        }
+    } while (!alumno);
+
+    string nombreCurso;
+    Curso* curso = nullptr;
+    Inscripcion* inscripcion = nullptr;
+
+    do {
+        cout << "Ingrese el nombre del curso: ";
+        cin >> nombreCurso;
+        curso = cursos.buscarCursoNombre(nombreCurso);
+
+        if (!curso) {
+            cout << "Curso no encontrado. Intente nuevamente." << endl;
+            continue;
+        }
+
+        // Buscar la inscripción del alumno en este curso
+        inscripcion = alumno->getInscripciones(); 
+        while (inscripcion != nullptr) {
+            if (inscripcion->getCurso()->getNombreCurso() == nombreCurso) {
+                break;
+            }
+            inscripcion = inscripcion->getSiguiente();
+        }
+
+        if (inscripcion == nullptr) {
+            cout << "El alumno no está inscrito en este curso. Intente nuevamente." << endl;
+            curso = nullptr;
+        }
+    } while (!curso);
+
+    int nNotas;
+    cout << "Cuántas notas desea registrar para este alumno? ";
+    cin >> nNotas;
+
+    for (int i = 0; i < nNotas; i++) {
+        double nota;
+        do {
+            cout << "Ingrese nota " << (i+1) << " (1,0 a 7,0): ";
+            cin >> nota;
+            if (nota < 1.0 || nota > 7.0) {
+                cout << "Nota inválida. Debe estar entre 1,0 y 7,0." << endl;
+            }
+        } while (nota < 1.0 || nota > 7.0);
+
+        inscripcion->agregarNotas(nota);
+    }
+
+    cout << "Notas registradas con éxito para el alumno " 
+         << alumno->getNombre() << " en el curso " 
+         << curso->getNombreCurso() << "." << endl;
 }
+
 
 void Sistema::reportes(){
     int id;
@@ -373,18 +431,7 @@ void Sistema::reportes(){
 
     }while(alumnoExiste!=nullptr);
 
-    Cursos* cursosAlumnos alumnoExiste->mostrarCursos();
-    
-
-
-
-
-    
-
-    /*
-    *Se pregunta por un alumno, luego se despliegan los cursos inscritos de dicho
-    *alumno con todas sus notas, promedio de cada curso, y promedio general del alumno.
-    */
+    alumnoExiste->mostrarReporte();
 }
 
 Sistema::~Sistema(){

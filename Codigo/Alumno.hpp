@@ -23,8 +23,8 @@ class Alumno{
         string getCarrera();
         int getId();
         string getfechaIngreso();
-        
-        
+        Inscripcion* getInscripciones();
+    
         //Setters
         void setID(int newId);
         void setNombre(string newNombre);
@@ -35,6 +35,8 @@ class Alumno{
         void agregarInscripcion(Curso* curso);
         void eliminarInscripcion(string codigoCurso);
         void mostrarCursos();
+        void mostrarReporte();
+        bool estaInscrito(Inscripcion* inscripcion);
 
         //destructor
         ~Alumno();
